@@ -1,0 +1,102 @@
+<html>
+<plasmo-csui></plasmo-csui>
+<link type="text/css" id="dark-mode" rel="stylesheet" href="">
+
+<head>
+    <title>BonziWORLD+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="./favicon.png">
+    <link rel="preload" href="/Tahoma.woff" as="font" crossorigin="anonymous" type="font/woff">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./lib/socket.io.js"></script>
+    <script src="./lib/speakClient.js"></script>
+    <script src="./lib/cmenu.js"></script>
+    <script src="./lib/create.js"></script>
+    <script src="./script.js"></script>
+</head>
+<body>
+    <div id="login">
+    <div id="top_bar">
+            <div></div>
+        </div>
+        <div id="bottom_bar">
+            <div></div>
+        </div>
+        <div id="divider"></div>
+        <div id="blur"></div>
+      <img id="logo_login" src="./img/logo_login.png">
+        <img id="logo_mobile" src="./img/logo_mobile.png">
+
+        <!--Login Card-->
+        <div id="loading" style="display: none;">loading</div>
+        <div id="login_card" style="display: block;">
+            <div id="card_border">
+                <form id="card_login" action="javascript:start()">
+                    <input id="nickname" placeholder="Nickname">
+                    <input id="room" placeholder="Room ID (Optional)">
+                    <!--Since it's complex the button is an image-->
+                    <div id="login_button" onclick="start()"></div>
+                    <!--HACKY SOLUTION ALERT! Secret submit input to make the form submittable-->
+                    <input type="submit" style="display:none">
+                </form>
+            </div>
+            <div id="login_error"></div>
+        </div>
+        <div id="readme_block">
+            Welcome to BonziWORLD Demo+!            <hr>
+            <a href="https://bonziworld.org/readme.html" target="_blank">README/HELP</a> &nbsp;
+            <a href="https://discord.gg/Yuphr2bYr5" target="_blank">Discord Server</a> &nbsp;
+        </div>
+        <div id="version">Version 0.1.0</div>
+
+        <div id="preload" style="display: none">
+            <img src="./img/desktop_logo.png">
+            <img src="./img/desktop_bg.png">
+            <img src="./img/bubble_tail_r.png">
+            <img src="./img/bubble_tail_l.png">
+            <img src="./img/bubble_tail_t.png">
+            <img src="./img/bubble_tail_b.png">
+            <img src="./img/start.png">
+            <img src="./img/login_button.png">
+
+
+            <img src="./img/agents/peedy.png">
+            <img src="./img/agents/purple.png">
+            <img src="./img/agents/clippy.png">
+            <img src="./img/agents/pope.png">
+            <img src="./img/agents/king.png">
+        </div>
+    </div>
+      
+    <div id="content" draggable="false">
+        <div id="bg" draggable="false"></div>
+        <canvas id="bonzicanvas" style="width: 100%; height: 100%; z-index: -20; left: 0; top: 0; position: absolute;" width="891" height="1692"></canvas>
+        <div id="chatbar_cont">
+            <div id="talkcard" style="display: none;">Debug text. Report to Rafael.</div>
+            <div id="send_button" onclick="talk()"><span>send</span></div>
+            <input id="chatbar" placeholder="Enter a message...">
+            <div id="tile" onclick="tile()"></div>
+        </div>
+        <div id="agent_content">
+        </div>
+        <div id="room_info">
+            Room ID - <span id="room_name">???</span><br> This room is <span id="room_priv">???</span><br> Member Count: <span id="room_count">???</span>
+        </div>
+    </div>
+</div>
+
+  <div id="error_page" style="display: none;">
+        <div class="error_message" id="error_disconnect" style="display:none;">
+            <img src="./img/error_disconnect.png"><br>
+            <h1>BonziWORLD.exe has encountered an error and needs to close.</h1> Nah, but seriously there was an error and you got disconnected from the server. Chances are, your internet just died out for a brief moment or your device went to sleep. Otherwise the server just screwed up.<br><br> You will automatically
+            reconnect. If that doesn't work try to Reload<br><br>
+            <a href="/">Reload?</a><br><br> Room ID - <span id="error_room">NONE</span>
+        </div>
+        <div class="error_message" id="error_kick" style="display:none;">
+            <img src="./img/error_disconnect.png"><br>
+            <h1>You have been kicked.</h1> You may have been kicked by an admin, or if it was a private room, the room owner.<br><br>
+            <a href="/">Reload?</a><br><br> Kicked by - <span id="error_kicker">???</span><br><br> Room ID - <span id="error_room">NONE</span>
+        </div>
+  </div>
+ </body>
+</html>
